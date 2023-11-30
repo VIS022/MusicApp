@@ -8,51 +8,73 @@
     tools:context=".HomeActivity"
     android:background="@drawable/bg1_gradient">
 
-  <Button
+
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="249dp"
+      android:layout_height="231dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.094"
+      app:srcCompat="@mipmap/logo_foreground" />
+
+  <com.google.android.material.button.MaterialButton
       android:id="@+id/playlist"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="60dp"
-      android:layout_marginBottom="10dp"
+      style="@style/btnbtn2"
+      android:layout_width="168dp"
+      android:layout_height="106dp"
+      android:layout_marginStart="34dp"
+      android:layout_marginTop="79dp"
+      android:layout_marginEnd="32dp"
+      android:layout_marginBottom="280dp"
       android:backgroundTint="#f86109"
       android:drawableTop="@drawable/baseline_library_music_24"
       android:text="Playlist"
       android:textColor="@color/black"
+
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/listView"
-      app:layout_constraintVertical_bias="1.0" />
+      app:layout_constraintStart_toEndOf="@+id/myFav"
+      app:layout_constraintTop_toBottomOf="@+id/imageView"
+      app:layout_constraintVertical_bias="0.416" />
 
-  <ListView
-      android:id="@+id/listView"
-      android:layout_width="match_parent"
-      android:layout_height="620dp"
-      android:layout_marginEnd="1dp"
-      android:layout_marginBottom="18dp"
-      android:divider="@android:color/transparent"
-      android:dividerHeight="10dp"
-      android:padding="9dp"
-      app:layout_constraintBottom_toTopOf="@+id/playlist"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-  </ListView>
-
-  <Button
+  <com.google.android.material.button.MaterialButton
       android:id="@+id/myFav"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      style="@style/btnbtn2"
+      android:layout_width="169dp"
+      android:layout_height="105dp"
       android:layout_marginStart="44dp"
-      android:layout_marginBottom="10dp"
+      android:layout_marginTop="81dp"
+      android:layout_marginBottom="280dp"
       android:backgroundTint="#f99214"
       android:drawableTop="@drawable/baseline_music_note_24"
       android:text="My Favorites"
       android:textColor="@color/black"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/playlist"
-      app:layout_constraintHorizontal_bias="0.12"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/listView"
-      app:layout_constraintVertical_bias="1.0" />
+      app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+  <com.google.android.material.button.MaterialButton
+      android:id="@+id/songs"
+      style="@style/btnbtn2"
+      android:layout_width="176dp"
+      android:layout_height="99dp"
+      android:layout_marginStart="130dp"
+      android:layout_marginTop="34dp"
+      android:layout_marginEnd="131dp"
+      android:layout_marginBottom="152dp"
+      android:backgroundTint="#f9ad1a"
+      android:drawableTop="@drawable/baseline_music_note_24"
+      android:text="Songs"
+      android:textColor="@color/black"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/playlist"
+      app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
