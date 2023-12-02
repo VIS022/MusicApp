@@ -11,6 +11,14 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url = uri("https://jitpack.io") }
+    }
 }
 
 rootProject.name = "LoonieTunes"

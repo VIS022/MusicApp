@@ -64,17 +64,20 @@ public class SongList extends AppCompatActivity {
 
     public ArrayList<File> findSong(File file) {
         ArrayList<File> arrayList = new ArrayList<>();
-        File[] files = file.listFiles();
 
-        if (files != null) {
-            for (File singleFile : files) {
-                if (singleFile.isDirectory() && !singleFile.isHidden()) {
-                    Log.d("SongList", "Directory: " + singleFile.getAbsolutePath());
-                    arrayList.addAll(findSong(singleFile));
-                } else {
-                    Log.d("SongList", "File: " + singleFile.getAbsolutePath());
-                    if (singleFile.getName().endsWith(".mp3") || singleFile.getName().endsWith(".wav")) {
-                        arrayList.add(singleFile);
+        if (file.exists() && file.isDirectory()) {
+            File[] files = file.listFiles();
+
+            if (files != null) {
+                for (File singleFile : files) {
+                    if (singleFile.isDirectory() && !singleFile.isHidden()) {
+                        Log.d("SongList", "findSong - Directory: " + singleFile.getAbsolutePath());
+                        arrayList.addAll(findSong(singleFile));
+                    } else {
+                        Log.d("SongList", "findSong - File: " + singleFile.getAbsolutePath());
+                        if (singleFile.getName().endsWith(".mp3") || singleFile.getName().endsWith(".wav")) {
+                            arrayList.add(singleFile);
+                        }
                     }
                 }
             }
@@ -83,21 +86,24 @@ public class SongList extends AppCompatActivity {
         return arrayList;
     }
 
-
-
-     void displaySong() {
+    void displaySong() {
         final ArrayList<File> mySongs = findSong(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC));
 
-        if (mySongs != null) {
+        if (mySongs != null && mySongs.size() > 0) {
+            // Log the number of songs
+            Log.d("SongList", "Number of songs: " + mySongs.size());
+
             for (File file : mySongs) {
-                Log.d("SongList", "File Path: " + file
-                        .getAbsolutePath());
+                Log.d("SongList", "File Path: " + file.getAbsolutePath());
             }
 
             songItems = new String[mySongs.size()];
             for (int i = 0; i < mySongs.size(); i++) {
                 songItems[i] = mySongs.get(i).getName().replace(".mp3", "").replace(".wav", "");
             }
+
+            // Log the number of items in the array
+            Log.d("SongList", "Number of items in songItems: " + songItems.length);
 
             customAdapter customAdapter = new customAdapter();
             listView.setAdapter(customAdapter);
@@ -107,18 +113,18 @@ public class SongList extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     String songName = (String) listView.getItemAtPosition(i);
 
-                    startActivity(new Intent(getApplicationContext(),PlayerActivity.class)
+                    startActivity(new Intent(getApplicationContext(), PlayerActivity.class)
                             .putExtra("songs", mySongs)
-                                .putExtra("songname", songName)
-                                .putExtra("pos", i)
+                            .putExtra("songname", songName)
+                            .putExtra("pos", i)
                     );
                 }
             });
+        } else {
+            // Handle the case where no songs are found
+            Log.d("SongList", "No songs found.");
         }
     }
-
-
-
 
     class customAdapter extends BaseAdapter {
         @Override
@@ -140,6 +146,9 @@ public class SongList extends AppCompatActivity {
 
         @Override
         public View getView(int i, View convertView, ViewGroup viewGroup) {
+            // Log when getView is called
+            Log.d("customAdapter", "getView called for position: " + i);
+
             View view = getLayoutInflater().inflate(R.layout.item_list, null);
             TextView txtSong = view.findViewById(R.id.txtSong);
             txtSong.setSelected(true);

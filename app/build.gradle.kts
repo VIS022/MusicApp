@@ -26,10 +26,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    
 }
 
 dependencies {
 
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     dependencies {
         implementation ("com.google.android.material:material:1.5.0")
         implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -38,6 +43,10 @@ dependencies {
         androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
         implementation ("com.karumi:dexter:6.2.2")
         implementation ("com.airbnb.android:lottie:6.2.0")
+
+
+            implementation ("com.gauravk.audiovisualizer:audiovisualizer:0.9.2")
+
     }
 
 

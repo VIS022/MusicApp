@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg2"
     android:orientation="vertical"
     android:weightSum="10"
@@ -17,7 +18,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtSong"
+            android:id="@+id/textSong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -77,6 +78,7 @@
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3">
@@ -91,7 +93,7 @@
                     android:layout_height="70dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/pause_24"
-                    android:backgroundTint="@color/blck2"
+                    android:backgroundTint="@android:color/background_dark"
                     android:text=""
                     android:contentDescription="Play Button" />
 
@@ -134,18 +136,22 @@
                     android:contentDescription="Rewind Button" />
 
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/animationView"
+                <com.gauravk.audiovisualizer.visualizer.BlastVisualizer
+                    android:id="@+id/blast"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="280dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_colorFilter="@color/black"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/ani"/>
+                    android:layout_height="70dp"
+                    custom:avDensity="0.8"
+                    custom:avType="outline"
+                    android:layout_alignParentBottom="true"
+                    custom:avColor="@color/av_dark_blue"
+                    custom:avSpeed="normal"
+                    tools:ignore="MissingClass" />
+
 
             </RelativeLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

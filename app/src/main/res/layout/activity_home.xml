@@ -26,9 +26,8 @@
       android:layout_width="168dp"
       android:layout_height="106dp"
       android:layout_marginStart="34dp"
-      android:layout_marginTop="79dp"
       android:layout_marginEnd="32dp"
-      android:layout_marginBottom="280dp"
+      android:layout_marginBottom="288dp"
       android:backgroundTint="#f86109"
       android:drawableTop="@drawable/baseline_library_music_24"
       android:text="Playlist"
@@ -36,9 +35,7 @@
 
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/myFav"
-      app:layout_constraintTop_toBottomOf="@+id/imageView"
-      app:layout_constraintVertical_bias="0.416" />
+      app:layout_constraintStart_toEndOf="@+id/myFav" />
 
   <com.google.android.material.button.MaterialButton
       android:id="@+id/myFav"
@@ -46,8 +43,7 @@
       android:layout_width="169dp"
       android:layout_height="105dp"
       android:layout_marginStart="44dp"
-      android:layout_marginTop="81dp"
-      android:layout_marginBottom="280dp"
+      android:layout_marginBottom="292dp"
       android:backgroundTint="#f99214"
       android:drawableTop="@drawable/baseline_music_note_24"
       android:text="My Favorites"
@@ -55,8 +51,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/playlist"
       app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/imageView" />
+      app:layout_constraintStart_toStartOf="parent" />
 
   <com.google.android.material.button.MaterialButton
       android:id="@+id/songs"
@@ -73,7 +68,6 @@
       android:textColor="@color/black"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/playlist"
       app:layout_constraintVertical_bias="0.0" />
