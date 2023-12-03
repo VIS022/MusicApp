@@ -32,7 +32,6 @@
       android:drawableTop="@drawable/baseline_library_music_24"
       android:text="Playlist"
       android:textColor="@color/black"
-
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/myFav" />
@@ -45,7 +44,7 @@
       android:layout_marginStart="44dp"
       android:layout_marginBottom="292dp"
       android:backgroundTint="#f99214"
-      android:drawableTop="@drawable/baseline_music_note_24"
+      android:drawableTop="@drawable/baseline_favorite_24"
       android:text="My Favorites"
       android:textColor="@color/black"
       app:layout_constraintBottom_toBottomOf="parent"

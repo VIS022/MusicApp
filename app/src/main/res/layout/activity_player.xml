@@ -137,13 +137,14 @@
 
 
                 <com.gauravk.audiovisualizer.visualizer.BlastVisualizer
-                    android:id="@+id/blast"
+                    android:id="@+id/wave"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    custom:avDensity="0.8"
+                    android:layout_height="100dp"
+                    custom:avDensity="0.5"
                     custom:avType="outline"
                     android:layout_alignParentBottom="true"
                     custom:avColor="@color/av_dark_blue"
+                    custom:avWidth="4dp"
                     custom:avSpeed="normal"
                     tools:ignore="MissingClass" />
 

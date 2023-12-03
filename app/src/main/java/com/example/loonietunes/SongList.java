@@ -1,30 +1,33 @@
 package com.example.loonietunes;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.karumi.dexter.Dexter;
+
+import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
+
 import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SongList extends AppCompatActivity {
 
-    ListView listView;
+    ListView ListView;
     String[] songItems;
 
     @Override
@@ -32,31 +35,26 @@ public class SongList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        listView = findViewById(R.id.listView);
+        ListView = findViewById(R.id.listView);
 
         // Request runtime permissions before attempting to display songs
         runTimePermission();
     }
 
     public void runTimePermission() {
-        Dexter.withContext(this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new PermissionListener() {
+        Dexter.withContext(this).withPermissions(
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                        android.Manifest.permission.RECORD_AUDIO
+                )
+
+                .withListener(new MultiplePermissionsListener() {
                     @Override
-                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                        // Display songs only after obtaining necessary permissions
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
                         displaySong();
                     }
 
                     @Override
-                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-                        // Handle permission denied if needed
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(
-                            PermissionRequest permissionRequest,
-                            PermissionToken permissionToken
-                    ) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check();
@@ -106,17 +104,17 @@ public class SongList extends AppCompatActivity {
             Log.d("SongList", "Number of items in songItems: " + songItems.length);
 
             customAdapter customAdapter = new customAdapter();
-            listView.setAdapter(customAdapter);
+            ListView.setAdapter(customAdapter);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String songName = (String) listView.getItemAtPosition(i);
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    String songName = (String) ListView.getItemAtPosition(position);
 
                     startActivity(new Intent(getApplicationContext(), PlayerActivity.class)
                             .putExtra("songs", mySongs)
                             .putExtra("songname", songName)
-                            .putExtra("pos", i)
+                            .putExtra("pos", position)
                     );
                 }
             });
@@ -135,24 +133,24 @@ public class SongList extends AppCompatActivity {
         }
 
         @Override
-        public Object getItem(int i) {
+        public Object getItem(int position) {
             return null;
         }
 
         @Override
-        public long getItemId(int i) {
+        public long getItemId(int position) {
             return 0;
         }
 
         @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
             // Log when getView is called
-            Log.d("customAdapter", "getView called for position: " + i);
+            Log.d("customAdapter", "getView called for position: " + position);
 
             View view = getLayoutInflater().inflate(R.layout.item_list, null);
             TextView txtSong = view.findViewById(R.id.txtSong);
             txtSong.setSelected(true);
-            txtSong.setText(songItems[i]);
+            txtSong.setText(songItems[position]);
             return view;
         }
     }
