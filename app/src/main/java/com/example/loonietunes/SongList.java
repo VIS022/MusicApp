@@ -27,7 +27,7 @@ import java.util.List;
 
 public class SongList extends AppCompatActivity {
 
-    ListView ListView;
+    ListView listView;
     String[] songItems;
 
     @Override
@@ -35,7 +35,7 @@ public class SongList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        ListView = findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
 
         // Request runtime permissions before attempting to display songs
         runTimePermission();
@@ -104,12 +104,12 @@ public class SongList extends AppCompatActivity {
             Log.d("SongList", "Number of items in songItems: " + songItems.length);
 
             customAdapter customAdapter = new customAdapter();
-            ListView.setAdapter(customAdapter);
+            listView.setAdapter(customAdapter);
 
-            ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String songName = (String) ListView.getItemAtPosition(position);
+                    String songName = (String) listView.getItemAtPosition(position);
 
                     startActivity(new Intent(getApplicationContext(), PlayerActivity.class)
                             .putExtra("songs", mySongs)
